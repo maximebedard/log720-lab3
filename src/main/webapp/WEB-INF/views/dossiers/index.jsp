@@ -2,9 +2,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 <t:layout>
-    <jsp:attribute name="header">
-    </jsp:attribute>
     <jsp:body>
-      <t:login_form />
+        sdsdfsdf
     </jsp:body>
 </t:layout>

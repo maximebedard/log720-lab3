@@ -1,4 +1,4 @@
-<%@tag description="Global layout" pageEncoding="UTF-8"%>
+<%@tag description="Page Layout" pageEncoding="UTF-8"%>
 <%@attribute name="header" fragment="true" %>
 <%@attribute name="scripts" fragment="true" %>
 
@@ -14,8 +14,8 @@
     <title>LOG720-LAB2</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/lab3/support/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/lab3/support/css/main.css" rel="stylesheet">
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/main.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -67,7 +67,7 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="/lab3/support/js/bootstrap.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
     <jsp:invoke fragment="scripts" />
   </body>
 </html>
