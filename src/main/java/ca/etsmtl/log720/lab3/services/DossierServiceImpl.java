@@ -19,4 +19,14 @@ public class DossierServiceImpl implements DossierService {
     public List<Dossier> findAllDossiers() {
         return dao.findAllDossiers();
     }
+
+    @Override
+    public Dossier findDossierById(int id) {
+        return dao.findDossierById(id);
+    }
+
+    @Override
+    public void createDossier(Dossier dossier) {
+        dao.createDossier(dossier);
+    }
 }

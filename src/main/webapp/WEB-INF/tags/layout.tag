@@ -1,8 +1,8 @@
-<%@tag description="Page Layout" pageEncoding="UTF-8"%>
-<%@attribute name="header" fragment="true" %>
-<%@attribute name="scripts" fragment="true" %>
+<%@ tag description="Page Layout" pageEncoding="UTF-8"%>
+<%@ attribute name="header" fragment="true" %>
+<%@ attribute name="scripts" fragment="true" %>
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,19 +39,9 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="${pageContext.request.contextPath}/dossiers">Dossiers</a></li>
-            <li><a href="${pageContext.request.contextPath}/infractions">Infractions</a></li>
-            <li><a href="${pageContext.request.contextPath}/utilisateurs">Utilisateurs</a></li>
-            <li>
-                <c:choose>
-                    <c:when test="${pageContext.request.remoteUser != null}">
-                        <a href="${pageContext.request.contextPath}/logout.jsp">${pageContext.request.remoteUser}</a>
-                    </c:when>
-                    <c:otherwise>
-                        <a href="${pageContext.request.contextPath}/login.jsp">M'authentifier</a>
-                    </c:otherwise>
-                </c:choose>
-            </li>
+            <li><a href="">Dossiers</a></li>
+            <li><a href="">Infractions</a></li>
+            <li><a href="">Utilisateurs</a></li>
           </ul>
         </div>
       </div>

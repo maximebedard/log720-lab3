@@ -13,4 +13,14 @@ public class DossierDaoImpl extends AbstractDao<Integer, Dossier> implements Dos
         Criteria criteria = createEntityCriteria();
         return criteria.list();
     }
+
+    @Override
+    public Dossier findDossierById(int id) {
+        return getByKey(id);
+    }
+
+    @Override
+    public void createDossier(Dossier dossier) {
+        persist(dossier);
+    }
 }

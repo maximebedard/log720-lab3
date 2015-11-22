@@ -7,4 +7,8 @@ import java.util.List;
 public interface DossierService {
 
     List<Dossier> findAllDossiers();
+
+    Dossier findDossierById(int id);
+
+    void createDossier(Dossier dossier);
 }
