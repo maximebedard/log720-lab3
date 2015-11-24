@@ -11,4 +11,6 @@ public interface DossierService {
     Dossier findDossierById(int id);
 
     void createDossier(Dossier dossier);
+
+    void updateDossier(Dossier dossier);
 }

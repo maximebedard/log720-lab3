@@ -29,4 +29,15 @@ public class DossierServiceImpl implements DossierService {
     public void createDossier(Dossier dossier) {
         dao.createDossier(dossier);
     }
+
+    @Override
+    public void updateDossier(Dossier dossier) {
+        Dossier entity = dao.findDossierById(dossier.getId());
+        if(entity == null) return;
+
+        entity.setNom(dossier.getNom());
+        entity.setPrenom(dossier.getPrenom());
+        entity.setNoPermis(dossier.getNoPermis());
+        entity.setNoPlaque(dossier.getNoPlaque());
+    }
 }

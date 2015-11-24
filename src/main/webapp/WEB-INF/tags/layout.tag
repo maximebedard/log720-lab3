@@ -48,6 +48,12 @@
     </nav>
 
     <div class="container">
+      <c:if test="${message != null}">
+        <div class="alert alert-info fade in">
+          <button class="close" data-dismiss="alert">×</button>
+          ${message}
+        </div>
+      </c:if>
       <jsp:invoke fragment="header"/>
       <jsp:doBody/>
     </div>
