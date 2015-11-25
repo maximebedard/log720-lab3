@@ -11,4 +11,6 @@ public interface DossierDao {
     Dossier findDossierById(int id);
 
     void createDossier(Dossier dossier);
+
+    void deleteDossierById(int id);
 }

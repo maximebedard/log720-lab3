@@ -40,7 +40,7 @@ public class DossiersController {
         if(result.hasErrors()) return "dossiers/index";
 
         service.createDossier(dossier);
-        redirectAttributes.addFlashAttribute("message", "L'utilisateur à été créé avec succès.");
+        redirectAttributes.addFlashAttribute("message", "Le dossier à été créé avec succès.");
         return "redirect:/dossiers";
     }
 
@@ -57,7 +57,14 @@ public class DossiersController {
         if(result.hasErrors()) return "dossiers/edit";
 
         service.updateDossier(dossier);
-        redirectAttributes.addFlashAttribute("message", "L'utilisateur à été modifié avec succès.");
+        redirectAttributes.addFlashAttribute("message", "Le dossier à été modifié avec succès.");
+        return "redirect:/dossiers";
+    }
+
+    @RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
+    public String deleteDossier(@PathVariable int id, final RedirectAttributes redirectAttributes) {
+        service.deleteDossierById(id);
+        redirectAttributes.addFlashAttribute("message", "Le dossier à été supprimé avec succès");
         return "redirect:/dossiers";
     }
 }

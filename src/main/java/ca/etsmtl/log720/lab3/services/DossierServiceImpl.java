@@ -40,4 +40,9 @@ public class DossierServiceImpl implements DossierService {
         entity.setNoPermis(dossier.getNoPermis());
         entity.setNoPlaque(dossier.getNoPlaque());
     }
+
+    @Override
+    public void deleteDossierById(int id) {
+        dao.deleteDossierById(id);
+    }
 }

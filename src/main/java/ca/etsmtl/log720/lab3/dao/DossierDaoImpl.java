@@ -2,6 +2,7 @@ package ca.etsmtl.log720.lab3.dao;
 
 import ca.etsmtl.log720.lab3.models.Dossier;
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -11,6 +12,7 @@ public class DossierDaoImpl extends AbstractDao<Integer, Dossier> implements Dos
     @Override
     public List<Dossier> findAllDossiers() {
         Criteria criteria = createEntityCriteria();
+        criteria.addOrder(Order.asc("id"));
         return criteria.list();
     }
 
@@ -22,5 +24,12 @@ public class DossierDaoImpl extends AbstractDao<Integer, Dossier> implements Dos
     @Override
     public void createDossier(Dossier dossier) {
         persist(dossier);
+    }
+
+    @Override
+    public void deleteDossierById(int id) {
+        Dossier dossier = new Dossier();
+        dossier.setId(id);
+        getSession().delete(dossier);
     }
 }

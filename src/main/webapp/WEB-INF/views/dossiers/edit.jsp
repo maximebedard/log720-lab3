@@ -78,8 +78,8 @@
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
             <button type="submit" class="btn btn-primary" name="btnSave">Sauvegarder</button>
-            <button type="submit" class="btn btn-danger" name="btnDelete">Supprimer</button>
-            <button type="submit" class="btn btn-warning" name="btnCancel">Annuler</button>
+            <a href="/dossiers/${dossier.id}/delete" class="btn btn-danger">Supprimer</a>
+            <a href="/dossiers" class="btn btn-warning">Annuler</a>
           </div>
         </div>
 
