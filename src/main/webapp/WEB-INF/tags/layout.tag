@@ -39,8 +39,8 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="">Dossiers</a></li>
-            <li><a href="">Infractions</a></li>
+            <li><a href="/dossiers">Dossiers</a></li>
+            <li><a href="/infractions">Infractions</a></li>
             <li><a href="">Utilisateurs</a></li>
           </ul>
         </div>
