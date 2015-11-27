@@ -2,6 +2,7 @@ package ca.etsmtl.log720.lab3;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 import javax.sql.DataSource;
@@ -17,6 +18,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .dataSource(dataSource)
                 .usersByUsernameQuery(getUsersByUsernameQuery())
                 .authoritiesByUsernameQuery(getAuthoritiesByUsernameQuery());
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .antMatchers("/**").permitAll()
+                .and().formLogin().loginPage("/auth/login")
+                .and().csrf()
+                .and().exceptionHandling().accessDeniedPage("/auth/denied");
     }
 
     private String getUsersByUsernameQuery() {

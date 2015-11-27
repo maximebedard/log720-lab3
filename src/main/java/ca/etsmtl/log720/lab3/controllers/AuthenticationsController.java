@@ -17,7 +17,7 @@ public class AuthenticationsController {
         return "auth/login";
     }
 
-    @RequestMapping(value= "/logout", method = RequestMethod.GET)
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
     private String logout(HttpServletRequest request, HttpServletResponse response){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null){
@@ -25,4 +25,7 @@ public class AuthenticationsController {
         }
         return "redirect:/login?logout";
     }
+
+    @RequestMapping(value = "/denied", method = RequestMethod.GET)
+    private String denied() { return "auth/denied"; }
 }
