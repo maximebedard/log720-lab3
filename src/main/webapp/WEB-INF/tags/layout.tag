@@ -3,6 +3,8 @@
 <%@ attribute name="scripts" fragment="true" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +43,15 @@
           <ul class="nav navbar-nav">
             <li><a href="/dossiers">Dossiers</a></li>
             <li><a href="/infractions">Infractions</a></li>
-            <li><a href="">Utilisateurs</a></li>
+            <li>
+              <sec:authorize access="isAuthenticated()" var="isAuthenticated" />
+              <c:if test="${isAuthenticated}">
+                <a href="/auth/logout"><sec:authentication property="principal.username"/></a>
+              </c:if>
+              <c:if test="${!isAuthenticated}">
+                <a href="/auth/login">Connexion</a>
+              </c:if>
+            </li>
           </ul>
         </div>
       </div>

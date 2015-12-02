@@ -7,8 +7,7 @@
 <t:layout>
     <jsp:body>
       <form:form method="POST" modelAttribute="dossier" class="form-horizontal">
-        <input type="hidden" id="csrfToken" value="${_csrf.token}"/>
-        <input type="hidden" id="csrfHeader" value="${_csrf.headerName}"/>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
         <div class="form-group">
           <label for="nom" class="col-sm-2 control-label">Nom</label>
           <div class="col-sm-10">

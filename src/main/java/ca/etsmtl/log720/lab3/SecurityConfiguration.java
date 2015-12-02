@@ -1,12 +1,16 @@
 package ca.etsmtl.log720.lab3;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 import javax.sql.DataSource;
 
+@Configuration
+@EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -25,21 +29,23 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/**").permitAll()
                 .and().formLogin().loginPage("/auth/login")
+                    .usernameParameter("username")
+                    .passwordParameter("password")
                 .and().csrf()
                 .and().exceptionHandling().accessDeniedPage("/auth/denied");
     }
 
     private String getUsersByUsernameQuery() {
-        return "select username, pwd as password" +
-                "from users" +
+        return "select username, pwd, enabled " +
+                "from users " +
                 "where username = ?";
     }
 
     private String getAuthoritiesByUsernameQuery() {
-        return "select username, role as authority" +
-                "from users" +
-                "inner join user_roles on users.id = user_roles.user_id" +
-                "inner join roles on user_roles.role_id = roles.id" +
+        return "select username, role " +
+                "from users " +
+                "inner join user_roles on users.id = user_roles.user_id " +
+                "inner join roles on user_roles.role_id = roles.id " +
                 "where username = ?";
     }
 }

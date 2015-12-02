@@ -36,6 +36,7 @@
         </table>
 
           <form:form method="POST" modelAttribute="infraction" class="form-inline">
+            <input type="hidden" id="csrfHeader" value="${_csrf.headerName}"/>
             <div class="form-group">
               <label class="sr-only" for="description">description</label>
               <form:input class="form-control" id="description" path="description" placeholder="Description" />

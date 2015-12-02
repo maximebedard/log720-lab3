@@ -40,6 +40,7 @@
         </table>
 
           <form:form method="POST" modelAttribute="dossier" class="form-inline">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
             <div class="form-group">
               <label class="sr-only" for="nom">Nom</label>
               <form:input class="form-control" id="nom" path="nom" placeholder="Nom" />

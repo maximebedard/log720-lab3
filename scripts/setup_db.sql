@@ -1,7 +1,8 @@
 create table users (
   id serial PRIMARY KEY,
   username varchar(100) NOT NULL UNIQUE,
-  pwd varchar(50) NOT NULL
+  pwd varchar(50) NOT NULL,
+  enabled boolean NOT NULL DEFAULT true
 );
 
 create table user_roles (
