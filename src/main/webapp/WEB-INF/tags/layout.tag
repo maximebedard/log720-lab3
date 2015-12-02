@@ -46,7 +46,7 @@
             <li>
               <sec:authorize access="isAuthenticated()" var="isAuthenticated" />
               <c:if test="${isAuthenticated}">
-                <a href="/auth/logout"><sec:authentication property="principal.username"/></a>
+                <a href="/auth/logout">Déconnexion</a>
               </c:if>
               <c:if test="${!isAuthenticated}">
                 <a href="/auth/login">Connexion</a>

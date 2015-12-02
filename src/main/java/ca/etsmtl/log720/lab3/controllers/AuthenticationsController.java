@@ -23,7 +23,7 @@ public class AuthenticationsController {
         if (auth != null){
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
-        return "redirect:/login?logout";
+        return "redirect:/auth/login?logout";
     }
 
     @RequestMapping(value = "/denied", method = RequestMethod.GET)
