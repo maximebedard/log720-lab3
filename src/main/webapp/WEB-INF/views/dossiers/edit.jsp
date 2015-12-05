@@ -37,6 +37,20 @@
           </div>
         </div>
 
+        <div class="form-group">
+          <label for="" class="col-sm-2 control-label">Infractions au dossier</label>
+          <div class="col-sm-10">
+            <c:forEach var="infraction" items="${allInfractions}">
+              <div class="checkbox">
+                <label>
+                  <form:checkbox path="infractions" value="${infraction}" /> ${infraction.description}
+                </label>
+              </div>
+            </c:forEach>
+
+          </div>
+        </div>
+
 
         <div class="form-group">
           <label for="infractions" class="col-sm-2 control-label">Infractions</label>
@@ -83,25 +97,5 @@
         </div>
 
       </form:form>
-        <h1>Ajout des infractions</h1>
-        <form action="${pageContext.request.contextPath}/dossiers?id=${dossier.id}" method="post" class="form-horizontal">
-          <c:choose>
-            <c:when test="${infractions.size() > 0}">
-              <div class="well">
-                <c:forEach items="${infractions}" var="infraction">
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" id="infraction_${infraction.id}" name="infractions" value="${infraction.id}"> ${infraction.description} (${infraction.gravite})<br />
-                    </label>
-                  </div>
-                </c:forEach>
-              </div>
-              <button type="submit" class="btn btn-primary" name="btnAddInfractions">Ajouter les infractions selectionnés</button>
-            </c:when>
-            <c:otherwise>
-              Vous devez ajouter des infractions à la banque d'infractions avant de procéder à l'attribution d'infractions à ce dossier.
-            </c:otherwise>
-          </c:choose>
-        </form>
-      </jsp:body>
+    </jsp:body>
 </t:layout>

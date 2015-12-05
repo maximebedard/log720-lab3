@@ -2,6 +2,8 @@ package ca.etsmtl.log720.lab3.models;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "infractions")
