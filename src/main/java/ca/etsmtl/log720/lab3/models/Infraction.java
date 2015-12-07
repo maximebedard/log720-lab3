@@ -2,7 +2,6 @@ package ca.etsmtl.log720.lab3.models;
 
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -11,6 +10,17 @@ public class Infraction {
     private int id;
     private String description;
     private Integer gravite;
+
+    @OneToMany(mappedBy = "infraction")
+    public List<InfractionDossier> getInfractionDossiers() {
+        return infractionDossiers;
+    }
+
+    public void setInfractionDossiers(List<InfractionDossier> infractionDossiers) {
+        this.infractionDossiers = infractionDossiers;
+    }
+
+    private List<InfractionDossier> infractionDossiers;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

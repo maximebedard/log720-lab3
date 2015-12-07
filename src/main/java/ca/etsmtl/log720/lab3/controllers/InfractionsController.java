@@ -1,6 +1,5 @@
 package ca.etsmtl.log720.lab3.controllers;
 
-import ca.etsmtl.log720.lab3.models.Dossier;
 import ca.etsmtl.log720.lab3.models.Infraction;
 import ca.etsmtl.log720.lab3.services.InfractionService;
 import org.springframework.beans.factory.annotation.Autowired;

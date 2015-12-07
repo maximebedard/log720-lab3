@@ -1,6 +1,5 @@
 package ca.etsmtl.log720.lab3;
 
-import ca.etsmtl.log720.lab3.models.Infraction;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -11,13 +10,9 @@ import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 
 import javax.sql.DataSource;
-import java.beans.PropertyEditorSupport;
 import java.util.Properties;
 
 @Configuration

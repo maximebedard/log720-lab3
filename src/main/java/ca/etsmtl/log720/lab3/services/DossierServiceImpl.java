@@ -17,22 +17,22 @@ public class DossierServiceImpl implements DossierService {
 
     @Override
     public List<Dossier> findAllDossiers() {
-        return dao.findAllDossiers();
+        return dao.findAll();
     }
 
     @Override
     public Dossier findDossierById(int id) {
-        return dao.findDossierById(id);
+        return dao.findById(id);
     }
 
     @Override
     public void createDossier(Dossier dossier) {
-        dao.createDossier(dossier);
+        dao.create(dossier);
     }
 
     @Override
     public void updateDossier(Dossier dossier) {
-        Dossier entity = dao.findDossierById(dossier.getId());
+        Dossier entity = dao.findById(dossier.getId());
         if(entity == null) return;
 
         entity.setNom(dossier.getNom());
@@ -43,6 +43,6 @@ public class DossierServiceImpl implements DossierService {
 
     @Override
     public void deleteDossierById(int id) {
-        dao.deleteDossierById(id);
+        dao.deleteById(id);
     }
 }

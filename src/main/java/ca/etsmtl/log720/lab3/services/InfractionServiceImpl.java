@@ -16,22 +16,22 @@ public class InfractionServiceImpl implements InfractionService {
 
     @Override
     public List<Infraction> findAllInfractions() {
-        return dao.findAllInfractions();
+        return dao.findAll();
     }
 
     @Override
     public Infraction findInfractionById(int id) {
-        return dao.findInfractionById(id);
+        return dao.findById(id);
     }
 
     @Override
     public void createInfraction(Infraction infraction) {
-        dao.createInfraction(infraction);
+        dao.create(infraction);
     }
 
     @Override
     public void updateInfraction(Infraction infraction) {
-        Infraction entity = dao.findInfractionById(infraction.getId());
+        Infraction entity = dao.findById(infraction.getId());
         if(entity == null) return;
 
         entity.setDescription(infraction.getDescription());
@@ -40,6 +40,6 @@ public class InfractionServiceImpl implements InfractionService {
 
     @Override
     public void deleteInfractionById(int id) {
-        dao.deleteInfractionById(id);
+        dao.deleteById(id);
     }
 }

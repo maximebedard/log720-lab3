@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface InfractionDao {
 
-    List<Infraction> findAllInfractions();
+    List<Infraction> findAll();
 
-    Infraction findInfractionById(int id);
+    Infraction findById(Integer id);
 
-    void createInfraction(Infraction infraction);
+    void create(Infraction infraction);
 
-    void deleteInfractionById(int id);
+    void deleteById(Integer id);
 }

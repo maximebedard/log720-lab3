@@ -6,11 +6,12 @@ import java.util.List;
 
 public interface DossierDao {
 
-    List<Dossier> findAllDossiers();
+    List<Dossier> findAll();
 
-    Dossier findDossierById(int id);
+    Dossier findById(Integer id);
 
-    void createDossier(Dossier dossier);
+    void create(Dossier infraction);
 
-    void deleteDossierById(int id);
+    void deleteById(Integer id);
+
 }
