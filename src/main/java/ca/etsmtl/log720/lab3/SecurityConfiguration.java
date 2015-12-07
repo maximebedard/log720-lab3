@@ -27,7 +27,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/**").permitAll()
+                .antMatchers("/dossiers/{\\d+}/infractions").access("hasAuthority('utilisateur')")
+                .antMatchers("/dossiers/**").access("hasAuthority('utilisateur') or hasAuthority('administrateur')")
+                .antMatchers("/infractions/**").access("hasAuthority('utilisateur') or hasAuthority('administrateur')")
                 .and().formLogin().loginPage("/auth/login")
                     .usernameParameter("username")
                     .passwordParameter("password")

@@ -3,6 +3,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <t:layout>
     <jsp:body>
@@ -47,7 +48,9 @@
                     <thead>
                       <tr>
                         <th>Description</th>
-                        <th>Actions</th>
+                        <sec:authorize access="hasAuthority('utilisateur')">
+                          <th>Actions</th>
+                        </sec:authorize>
                       </tr>
                     </thead>
                   <c:forEach items="${dossier.infractionDossiers}" var="infractionDossier">
@@ -56,11 +59,13 @@
                         ${infractionDossier.infraction.description}
                         <span class="badge pull-right">${infractionDossier.infraction.gravite}</span>
                       </td>
-                      <td>
-                        <a href="/dossiers/${dossier.id}/infractions/${infractionDossier.id}/delete" class="btn btn-danger">
-                          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Supprimer
-                        </a>
-                      </td>
+                      <sec:authorize access="hasAuthority('utilisateur')">
+                        <td>
+                          <a href="/dossiers/${dossier.id}/infractions/${infractionDossier.id}/delete" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Supprimer
+                          </a>
+                        </td>
+                      </sec:authorize>
                     </tr>
                   </c:forEach>
                   </table>
@@ -70,14 +75,18 @@
                 Aucune infractions attribués à ce dossier.
               </c:otherwise>
             </c:choose>
-            <a href="/dossiers/${dossier.id}/infractions" class="btn btn-primary">Ajouter des infractions à ce dossier</a>
+            <sec:authorize access="hasAuthority('utilisateur')">
+              <a href="/dossiers/${dossier.id}/infractions" class="btn btn-primary">Ajouter des infractions à ce dossier</a>
+            </sec:authorize>
           </div>
         </div>
 
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-primary" name="btnSave">Sauvegarder</button>
-            <a href="/dossiers/${dossier.id}/delete" class="btn btn-danger">Supprimer</a>
+            <sec:authorize access="hasAuthority('administrateur')">
+              <button type="submit" class="btn btn-primary" name="btnSave">Sauvegarder</button>
+              <a href="/dossiers/${dossier.id}/delete" class="btn btn-danger">Supprimer</a>
+            </sec:authorize>
             <a href="/dossiers" class="btn btn-warning">Annuler</a>
           </div>
         </div>

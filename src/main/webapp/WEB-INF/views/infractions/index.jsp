@@ -3,6 +3,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <t:layout>
       <jsp:attribute name="scripts">
@@ -34,18 +35,19 @@
               </c:forEach>
           </tbody>
         </table>
-
-          <form:form method="POST" modelAttribute="infraction" class="form-inline">
-            <input type="hidden" id="csrfHeader" value="${_csrf.headerName}"/>
-            <div class="form-group">
-              <label class="sr-only" for="description">description</label>
-              <form:input class="form-control" id="description" path="description" placeholder="Description" />
-            </div>
-            <div class="form-group">
-              <label class="sr-only" for="gravite">Sévérité</label>
-              <form:input class="form-control" id="gravite" path="gravite" placeholder="Sévérité" />
-            </div>
-            <button type="submit" class="btn btn-default btn-primary" name="create">Ajouter</button>
-        </form:form>
+        <sec:authorize access="hasAuthority('administrateur')">
+            <form:form method="POST" modelAttribute="infraction" class="form-inline">
+                <input type="hidden" id="csrfHeader" value="${_csrf.headerName}"/>
+                <div class="form-group">
+                  <label class="sr-only" for="description">description</label>
+                  <form:input class="form-control" id="description" path="description" placeholder="Description" />
+                </div>
+                <div class="form-group">
+                  <label class="sr-only" for="gravite">Sévérité</label>
+                  <form:input class="form-control" id="gravite" path="gravite" placeholder="Sévérité" />
+                </div>
+                <button type="submit" class="btn btn-default btn-primary" name="create">Ajouter</button>
+            </form:form>
+        </sec:authorize>
     </jsp:body>
 </t:layout>

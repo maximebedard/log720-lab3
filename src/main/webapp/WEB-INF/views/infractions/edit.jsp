@@ -3,6 +3,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <t:layout>
     <jsp:body>
@@ -25,8 +26,10 @@
 
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-primary" name="btnSave">Sauvegarder</button>
-            <a href="/infractions/${infraction.id}/delete" class="btn btn-danger">Supprimer</a>
+            <sec:authorize access="hasAuthority('administrateur')">
+              <button type="submit" class="btn btn-primary" name="btnSave">Sauvegarder</button>
+              <a href="/infractions/${infraction.id}/delete" class="btn btn-danger">Supprimer</a>
+            </sec:authorize>
             <a href="/infractions" class="btn btn-warning">Annuler</a>
           </div>
         </div>

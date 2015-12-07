@@ -3,6 +3,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <t:layout>
       <jsp:attribute name="scripts">
@@ -39,6 +40,7 @@
           </tbody>
         </table>
 
+        <sec:authorize access="hasAuthority('administrateur')">
           <form:form method="POST" modelAttribute="dossier" class="form-inline">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
             <div class="form-group">
@@ -58,6 +60,7 @@
               <form:input class="form-control" id="noPermis" path="noPermis" placeholder="# Permis" />
             </div>
             <button type="submit" class="btn btn-default btn-primary" name="create">Ajouter</button>
-        </form:form>
+          </form:form>
+        </sec:authorize>
     </jsp:body>
 </t:layout>
