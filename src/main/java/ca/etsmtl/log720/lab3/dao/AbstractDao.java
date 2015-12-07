@@ -45,10 +45,6 @@ public abstract class AbstractDao<PK extends Serializable, T> {
         getSession().delete(entity);
     }
 
-    public void deleteById(PK key) {
-        getSession().delete(findById(key));
-    }
-
     protected Criteria createEntityCriteria(){
         return getSession().createCriteria(persistentClass);
     }

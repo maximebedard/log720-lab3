@@ -44,7 +44,7 @@ public class InfractionDossiersController {
                                         final RedirectAttributes redirectAttributes) {
 
         Dossier dossier = dossierService.findDossierById(dossierId);
-        if (dossier == null) return "404";
+        if(dossier == null) return "404";
 
         infractionDossierService.createInfractionsForDossier(dossier, infractionIds);
         redirectAttributes.addFlashAttribute("message", "Les infractions ont été ajoutés au dossier avec succès!");
@@ -56,10 +56,11 @@ public class InfractionDossiersController {
                                           @PathVariable int id,
                                           final RedirectAttributes redirectAttributes) {
 
-        InfractionDossier infractionDossier = infractionDossierService.findInfractionDossierById(id);
-        if(infractionDossier == null) return "404";
+        InfractionDossier i = new InfractionDossier();
+        i.setId(id);
 
-        infractionDossierService.deleteInfractionDossier(infractionDossier);
+        infractionDossierService.deleteInfractionDossier(i);
+
         redirectAttributes.addFlashAttribute("message", "L'infraction a été supprimé du dossier avec succès!");
         return "redirect:/dossiers/" + dossierId + "/edit";
     }

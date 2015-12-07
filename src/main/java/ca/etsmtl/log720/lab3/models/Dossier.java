@@ -2,6 +2,7 @@ package ca.etsmtl.log720.lab3.models;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,15 +14,20 @@ public class Dossier {
     private String prenom;
     private String noPlaque;
     private String noPermis;
-    private List<InfractionDossier> infractionDossiers;
+    private List<InfractionDossier> infractionDossiers = new ArrayList<>();
 
-    @OneToMany(mappedBy = "dossier")
+    @OneToMany(mappedBy = "dossier", orphanRemoval = true)
     public List<InfractionDossier> getInfractionDossiers() {
         return infractionDossiers;
     }
 
     public void setInfractionDossiers(List<InfractionDossier> infractionDossiers) {
         this.infractionDossiers = infractionDossiers;
+    }
+
+    public void addInfractionDossier(InfractionDossier infractionDossier) {
+        infractionDossier.setDossier(this);
+        this.infractionDossiers.add(infractionDossier);
     }
 
     @Id

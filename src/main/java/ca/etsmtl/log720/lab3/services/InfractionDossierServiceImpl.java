@@ -16,21 +16,21 @@ public class InfractionDossierServiceImpl implements InfractionDossierService {
     @Autowired
     InfractionDossierDao dao;
 
-    @Autowired
-    InfractionService infractionService;
-
     @Override
     public void createInfractionsForDossier(Dossier dossier, String[] infractionIds) {
         List<InfractionDossier> associations = new ArrayList<>();
         for(String s : infractionIds){
             try {
-                Integer id = Integer.valueOf(s);
-                Infraction infraction = infractionService.findInfractionById(id);
-                if (infraction == null) continue;
+                Integer infractionId = Integer.valueOf(s);
+
+                Infraction infraction = new Infraction();
+                infraction.setId(infractionId);
 
                 InfractionDossier infractionDossier = new InfractionDossier();
                 infractionDossier.setDossier(dossier);
                 infractionDossier.setInfraction(infraction);
+
+                dossier.addInfractionDossier(infractionDossier);
                 dao.create(infractionDossier);
             } catch (NumberFormatException ex) {}
         }

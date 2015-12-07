@@ -20,8 +20,8 @@ public class InfractionDossier {
         this.id = id;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="dossier_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name="dossier_id")
     public Dossier getDossier() {
         return dossier;
     }
@@ -30,8 +30,8 @@ public class InfractionDossier {
         this.dossier = dossier;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="infraction_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name="infraction_id")
     public Infraction getInfraction() {
         return infraction;
     }
