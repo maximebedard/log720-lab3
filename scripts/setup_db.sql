@@ -21,7 +21,7 @@ create table dossiers (
   nom varchar(255) NOT NULL,
   prenom varchar(255) NOT NULL,
   no_plaque varchar(255) NOT NULL,
-  no_permis varchar(255) NOT NULL
+  no_permis varchar(255) NOT NULL UNIQUE
 );
 
 create table infractions (

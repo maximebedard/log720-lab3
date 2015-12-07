@@ -11,11 +11,13 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -35,18 +37,29 @@ public class DossiersController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String listDossiers(Model model) {
-        List<Dossier> dossiers = dosierService.findAllDossiers();
-        model.addAttribute("dossiers", dossiers);
+        loadDossiers(model);
         model.addAttribute("dossier", new Dossier());
         return "dossiers/index";
     }
 
+    private void loadDossiers(Model model) {
+        List<Dossier> dossiers = dosierService.findAllDossiers();
+        model.addAttribute("dossiers", dossiers);
+    }
+
     @RequestMapping(method = RequestMethod.POST)
-    public String createDossier(@Valid Dossier dossier, BindingResult result, final RedirectAttributes redirectAttributes) {
+    public String createDossier(@Valid Dossier dossier, BindingResult result, Model model, final RedirectAttributes redirectAttributes) {
+        loadDossiers(model);
         if(result.hasErrors()) return "dossiers/index";
 
-        dosierService.createDossier(dossier);
-        redirectAttributes.addFlashAttribute("message", "Le dossier à été créé avec succès.");
+        try {
+            dosierService.createDossier(dossier);
+
+            redirectAttributes.addFlashAttribute("message", "Le dossier à été créé avec succès.");
+        } catch (Exception ex) { // hack pour voir si il y a une erreur (dupplicate entry)
+            redirectAttributes.addFlashAttribute("message", "Une erreur s'est produite lors de la sauvegarde du dossier." +
+                    "Un dossier avec un numéro de permis identique existe déjà.");
+        }
         return "redirect:/dossiers";
     }
 

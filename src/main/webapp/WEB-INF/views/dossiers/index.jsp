@@ -46,18 +46,22 @@
             <div class="form-group">
               <label class="sr-only" for="nom">Nom</label>
               <form:input class="form-control" id="nom" path="nom" placeholder="Nom" />
+              <br /><form:errors path="nom" cssClass="error" class="has-errors" />
             </div>
             <div class="form-group">
               <label class="sr-only" for="prenom">Prenom</label>
               <form:input class="form-control" id="prenom" path="prenom" placeholder="Prenom" />
+              <br /><form:errors path="prenom" cssClass="error" class="has-errors" />
             </div>
             <div class="form-group">
               <label class="sr-only" for="noPlaque"># Plaque</label>
               <form:input class="form-control" id="noPlaque" path="noPlaque" placeholder="# Plaque" />
+              <br /><form:errors path="noPlaque" cssClass="error" class="has-errors" />
             </div>
             <div class="form-group">
               <label class="sr-only" for="noPermis"># Permis</label>
               <form:input class="form-control" id="noPermis" path="noPermis" placeholder="# Permis" />
+              <br /><form:errors path="noPermis" cssClass="error" class="has-errors" />
             </div>
             <button type="submit" class="btn btn-default btn-primary" name="create">Ajouter</button>
           </form:form>
