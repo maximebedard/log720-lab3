@@ -10,8 +10,8 @@ public interface InfractionDossierDao {
 
     InfractionDossier findById(Integer id);
 
-    void create(InfractionDossier infraction);
+    void create(InfractionDossier infractionDossier);
 
-    void deleteById(Integer id);
+    void delete(InfractionDossier infractionDossier);
 
 }

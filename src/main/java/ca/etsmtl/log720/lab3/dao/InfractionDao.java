@@ -12,5 +12,5 @@ public interface InfractionDao {
 
     void create(Infraction infraction);
 
-    void deleteById(Integer id);
+    void delete(Infraction infraction);
 }

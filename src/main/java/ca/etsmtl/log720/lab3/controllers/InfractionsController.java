@@ -46,6 +46,8 @@ public class InfractionsController {
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
     public String editInfraction(@PathVariable int id, Model model){
         Infraction infraction = service.findInfractionById(id);
+        if (infraction == null) return "404";
+
         model.addAttribute("infraction", infraction);
         return "infractions/edit";
     }
@@ -62,7 +64,10 @@ public class InfractionsController {
 
     @RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
     public String deleteInfraction(@PathVariable int id, final RedirectAttributes redirectAttributes) {
-        service.deleteInfractionById(id);
+        Infraction infraction = service.findInfractionById(id);
+        if(infraction == null) return "404";
+
+        service.deleteInfraction(infraction);
         redirectAttributes.addFlashAttribute("message", "L'infraction a été supprimé avec succès");
         return "redirect:/infractions";
     }

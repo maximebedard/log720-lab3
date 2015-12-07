@@ -3,6 +3,7 @@ package ca.etsmtl.log720.lab3.models;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "dossiers")

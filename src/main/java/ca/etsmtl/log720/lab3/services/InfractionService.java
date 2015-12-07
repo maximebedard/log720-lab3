@@ -14,5 +14,5 @@ public interface InfractionService {
 
     void updateInfraction(Infraction infraction);
 
-    void deleteInfractionById(int id);
+    void deleteInfraction(Infraction infraction);
 }

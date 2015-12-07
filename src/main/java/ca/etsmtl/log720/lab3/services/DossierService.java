@@ -14,5 +14,5 @@ public interface DossierService {
 
     void updateDossier(Dossier dossier);
 
-    void deleteDossierById(int id);
+    void deleteDossier(Dossier dossier);
 }

@@ -39,7 +39,7 @@ public class InfractionServiceImpl implements InfractionService {
     }
 
     @Override
-    public void deleteInfractionById(int id) {
-        dao.deleteById(id);
+    public void deleteInfraction(Infraction infraction) {
+        dao.delete(infraction);
     }
 }

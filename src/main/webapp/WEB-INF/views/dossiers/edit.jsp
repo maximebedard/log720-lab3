@@ -38,25 +38,10 @@
         </div>
 
         <div class="form-group">
-          <label for="" class="col-sm-2 control-label">Infractions au dossier</label>
-          <div class="col-sm-10">
-            <c:forEach var="infraction" items="${allInfractions}">
-              <div class="checkbox">
-                <label>
-                  <form:checkbox path="infractions" value="${infraction}" /> ${infraction.description}
-                </label>
-              </div>
-            </c:forEach>
-
-          </div>
-        </div>
-
-
-        <div class="form-group">
           <label for="infractions" class="col-sm-2 control-label">Infractions</label>
           <div class="col-sm-10">
             <c:choose>
-              <c:when test="${selectedInfractions.size() > 0}">
+              <c:when test="${dossier.infractionDossiers.size() > 0}">
                 <ul class="list-group">
                   <table class="table table-bordered table-hover">
                     <thead>
@@ -65,14 +50,14 @@
                         <th>Actions</th>
                       </tr>
                     </thead>
-                  <c:forEach items="${selectedInfractions}" var="infraction">
+                  <c:forEach items="${dossier.infractionDossiers}" var="infractionDossier">
                     <tr>
                       <td>
-                        ${infraction.description}
-                        <span class="badge pull-right">${infraction.gravite}</span>
+                        ${infractionDossier.infraction.description}
+                        <span class="badge pull-right">${infractionDossier.infraction.gravite}</span>
                       </td>
                       <td>
-                        <button type="submit" class="btn btn-danger" name="btnDelInfraction" value="${infraction.id_dossierInfraction}">
+                        <button type="submit" class="btn btn-danger" name="btnDelInfraction" value="${infractionDossier.id}">
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Supprimer
                         </button>
                       </td>
@@ -85,6 +70,7 @@
                 Aucune infractions attribués à ce dossier.
               </c:otherwise>
             </c:choose>
+            <a href="/dossiers/${dossier.id}/infractions" class="btn btn-primary">Ajouter des infractions à ce dossier</a>
           </div>
         </div>
 

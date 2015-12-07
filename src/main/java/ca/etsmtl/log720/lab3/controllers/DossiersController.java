@@ -51,16 +51,14 @@ public class DossiersController {
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
     public String editDossier(@PathVariable int id, Model model){
         Dossier dossier = dosierService.findDossierById(id);
-        List<Infraction> infractions = infractionService.findAllInfractions();
+        if(dossier == null) return "404";
 
         model.addAttribute("dossier", dossier);
-        model.addAttribute("allInfractions", infractions);
         return "dossiers/edit";
     }
 
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.POST)
     public String updateDossier(@Valid Dossier dossier, @PathVariable int id, BindingResult result, final RedirectAttributes redirectAttributes) {
-
         if(result.hasErrors()) return "dossiers/edit";
 
         dosierService.updateDossier(dossier);
@@ -70,7 +68,10 @@ public class DossiersController {
 
     @RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
     public String deleteDossier(@PathVariable int id, final RedirectAttributes redirectAttributes) {
-        dosierService.deleteDossierById(id);
+        Dossier dossier = dosierService.findDossierById(id);
+        if (dossier == null) return "404";
+
+        dosierService.deleteDossier(dossier);
         redirectAttributes.addFlashAttribute("message", "Le dossier à été supprimé avec succès");
         return "redirect:/dossiers";
     }

@@ -42,7 +42,7 @@ public class DossierServiceImpl implements DossierService {
     }
 
     @Override
-    public void deleteDossierById(int id) {
-        dao.deleteById(id);
+    public void deleteDossier(Dossier dossier) {
+        dao.delete(dossier);
     }
 }

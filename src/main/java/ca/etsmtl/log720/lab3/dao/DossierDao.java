@@ -10,8 +10,8 @@ public interface DossierDao {
 
     Dossier findById(Integer id);
 
-    void create(Dossier infraction);
+    void create(Dossier dossier);
 
-    void deleteById(Integer id);
+    void delete(Dossier dossier);
 
 }
