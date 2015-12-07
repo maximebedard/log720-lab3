@@ -35,4 +35,14 @@ public class InfractionDossierServiceImpl implements InfractionDossierService {
             } catch (NumberFormatException ex) {}
         }
     }
+
+    @Override
+    public InfractionDossier findInfractionDossierById(int id) {
+        return dao.findById(id);
+    }
+
+    @Override
+    public void deleteInfractionDossier(InfractionDossier infractionDossier) {
+        dao.delete(infractionDossier);
+    }
 }

@@ -57,9 +57,9 @@
                         <span class="badge pull-right">${infractionDossier.infraction.gravite}</span>
                       </td>
                       <td>
-                        <button type="submit" class="btn btn-danger" name="btnDelInfraction" value="${infractionDossier.id}">
-                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Supprimer
-                        </button>
+                        <a href="/dossiers/${dossier.id}/infractions/${infractionDossier.id}/delete" class="btn btn-danger">
+                          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Supprimer
+                        </a>
                       </td>
                     </tr>
                   </c:forEach>
