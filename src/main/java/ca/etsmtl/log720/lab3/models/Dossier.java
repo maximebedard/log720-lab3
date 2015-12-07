@@ -16,7 +16,7 @@ public class Dossier {
     private String noPermis;
     private List<InfractionDossier> infractionDossiers = new ArrayList<>();
 
-    @OneToMany(mappedBy = "dossier", orphanRemoval = true)
+    @OneToMany(mappedBy = "dossier", cascade = CascadeType.ALL)
     public List<InfractionDossier> getInfractionDossiers() {
         return infractionDossiers;
     }

@@ -12,7 +12,7 @@ public class Infraction {
     private String description;
     private Integer gravite;
 
-    @OneToMany(mappedBy = "infraction", orphanRemoval = true)
+    @OneToMany(mappedBy = "infraction", cascade = CascadeType.ALL)
     public List<InfractionDossier> getInfractionDossiers() {
         return infractionDossiers;
     }
