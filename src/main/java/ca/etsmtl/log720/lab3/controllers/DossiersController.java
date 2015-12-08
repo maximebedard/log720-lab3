@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 
 @Controller
@@ -49,8 +50,10 @@ public class DossiersController {
 
     @RequestMapping(method = RequestMethod.POST)
     public String createDossier(@Valid Dossier dossier, BindingResult result, Model model, final RedirectAttributes redirectAttributes) {
-        loadDossiers(model);
-        if(result.hasErrors()) return "dossiers/index";
+        if(result.hasErrors()) {
+            loadDossiers(model);
+            return "dossiers/index";
+        }
 
         try {
             dosierService.createDossier(dossier);
@@ -73,11 +76,17 @@ public class DossiersController {
     }
 
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.POST)
-    public String updateDossier(@Valid Dossier dossier, @PathVariable int id, BindingResult result, final RedirectAttributes redirectAttributes) {
+    public String updateDossier(@Valid Dossier dossier, BindingResult result, final RedirectAttributes redirectAttributes) {
         if(result.hasErrors()) return "dossiers/edit";
 
-        dosierService.updateDossier(dossier);
-        redirectAttributes.addFlashAttribute("message", "Le dossier à été modifié avec succès.");
+        try{
+            dosierService.updateDossier(dossier);
+
+            redirectAttributes.addFlashAttribute("message", "Le dossier à été modifié avec succès.");
+        } catch (Exception ex) { // hack pour voir si il y a une erreur (dupplicate entry)
+            redirectAttributes.addFlashAttribute("message", "Une erreur s'est produite lors de la sauvegarde du dossier." +
+                    "Un dossier avec un numéro de permis identique existe déjà.");
+        }
         return "redirect:/dossiers";
     }
 

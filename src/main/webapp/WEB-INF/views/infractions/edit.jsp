@@ -11,16 +11,22 @@
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
         <div class="form-group">
           <label for="nom" class="col-sm-2 control-label">Description</label>
-          <div class="col-sm-10">
+          <div class="col-sm-7">
             <form:input type="text" class="form-control" id="description" path="description" placeholder="Description" />
+          </div>
+          <div class="col-sm-3">
+            <form:errors path="description" cssClass="error" class="has-errors" />
           </div>
         </div>
 
 
         <div class="form-group">
           <label for="gravite" class="col-sm-2 control-label">Severité</label>
-          <div class="col-sm-10">
+          <div class="col-sm-7">
             <form:input type="text" class="form-control" id="gravite" path="gravite" placeholder="Séverité" />
+          </div>
+          <div class="col-sm-3">
+            <form:errors path="gravite" cssClass="error" class="has-errors" />
           </div>
         </div>
 

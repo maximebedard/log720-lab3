@@ -41,10 +41,12 @@
                 <div class="form-group">
                   <label class="sr-only" for="description">description</label>
                   <form:input class="form-control" id="description" path="description" placeholder="Description" />
+                  <br /><form:errors path="description" cssClass="error" class="has-errors" />
                 </div>
                 <div class="form-group">
                   <label class="sr-only" for="gravite">Sévérité</label>
                   <form:input class="form-control" id="gravite" path="gravite" placeholder="Sévérité" />
+                  <br /><form:errors path="gravite" cssClass="error" class="has-errors" />
                 </div>
                 <button type="submit" class="btn btn-default btn-primary" name="create">Ajouter</button>
             </form:form>

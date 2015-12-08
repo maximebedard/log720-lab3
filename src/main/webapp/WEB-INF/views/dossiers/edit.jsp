@@ -11,30 +11,42 @@
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
         <div class="form-group">
           <label for="nom" class="col-sm-2 control-label">Nom</label>
-          <div class="col-sm-10">
+          <div class="col-sm-7">
             <form:input type="text" class="form-control" id="nom" path="nom" placeholder="Nom" />
+          </div>
+          <div class="col-sm-3">
+            <form:errors path="nom" cssClass="error" class="has-errors" />
           </div>
         </div>
 
 
         <div class="form-group">
           <label for="prenom" class="col-sm-2 control-label">Prenom</label>
-          <div class="col-sm-10">
+          <div class="col-sm-7">
             <form:input type="text" class="form-control" id="prenom" path="prenom" placeholder="Prenom" />
+          </div>
+          <div class="col-sm-3">
+            <form:errors path="prenom" cssClass="error" class="has-errors" />
           </div>
         </div>
 
         <div class="form-group">
           <label for="noPlaque" class="col-sm-2 control-label"># Plaque</label>
-          <div class="col-sm-10">
+          <div class="col-sm-7">
             <form:input type="text" class="form-control" id="noPlaque" path="noPlaque" placeholder="# Plaque" />
+          </div>
+          <div class="col-sm-3">
+            <form:errors path="noPlaque" cssClass="error" class="has-errors" />
           </div>
         </div>
 
         <div class="form-group">
           <label for="noPermis" class="col-sm-2 control-label"># Permis</label>
-          <div class="col-sm-10">
+          <div class="col-sm-7">
             <form:input type="text" class="form-control" id="noPermis" path="noPermis" placeholder="# Permis" />
+          </div>
+          <div class="col-sm-3">
+            <form:errors path="noPermis" cssClass="error" class="has-errors" />
           </div>
         </div>
 

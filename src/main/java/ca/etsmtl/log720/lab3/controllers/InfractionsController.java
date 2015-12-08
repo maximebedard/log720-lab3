@@ -28,15 +28,22 @@ public class InfractionsController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String listInfractions(Model model) {
-        List<Infraction> infractions = service.findAllInfractions();
-        model.addAttribute("infractions", infractions);
+        loadInfractions(model);
         model.addAttribute("infraction", new Infraction());
         return "infractions/index";
     }
 
+    private void loadInfractions(Model model) {
+        List<Infraction> infractions = service.findAllInfractions();
+        model.addAttribute("infractions", infractions);
+    }
+
     @RequestMapping(method = RequestMethod.POST)
-    public String createInfraction(@Valid Infraction infraction, BindingResult result, final RedirectAttributes redirectAttributes) {
-        if(result.hasErrors()) return "infractions/index";
+    public String createInfraction(@Valid Infraction infraction, BindingResult result, Model model, final RedirectAttributes redirectAttributes) {
+        if(result.hasErrors()) {
+            loadInfractions(model);
+            return "infractions/index";
+        }
 
         service.createInfraction(infraction);
         redirectAttributes.addFlashAttribute("message", "L'infraction a été créé avec succès.");
@@ -53,9 +60,9 @@ public class InfractionsController {
     }
 
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.POST)
-    public String updateInfraction(@Valid Infraction infraction, @PathVariable int id, BindingResult result, final RedirectAttributes redirectAttributes) {
-
+    public String updateInfraction(@Valid Infraction infraction, BindingResult result, final RedirectAttributes redirectAttributes) {
         if(result.hasErrors()) return "infractions/edit";
+
 
         service.updateInfraction(infraction);
         redirectAttributes.addFlashAttribute("message", "L'infraction a été modifié avec succès.");

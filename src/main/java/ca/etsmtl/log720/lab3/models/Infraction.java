@@ -1,7 +1,12 @@
 package ca.etsmtl.log720.lab3.models;
 
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +14,13 @@ import java.util.List;
 @Table(name = "infractions")
 public class Infraction {
     private int id;
+
+    @NotBlank
     private String description;
+
+    @Min(value = 0)
+    @Max(value = 100)
+    @NotNull
     private Integer gravite;
 
     @OneToMany(mappedBy = "infraction", cascade = CascadeType.ALL)
